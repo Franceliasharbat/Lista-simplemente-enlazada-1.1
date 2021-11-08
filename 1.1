@@ -1,0 +1,112 @@
+package nodosaut;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @Francelia_bueno
+ */
+public class NodosAut {
+    Scanner scaner = new Scanner(System.in);
+    int cont = 0, ini = 0, total = 0; //variables usadas para incrementos
+    Nodo top = null; //Creación de listas
+    Nodo temp = null;
+    
+    
+    public static void main(String[] args) {
+        Scanner scaner = new Scanner(System.in);
+        NodosAut nodos = new NodosAut(); //Creacion de un objeto llamado nodos
+        int Opcion;
+         do {
+            System.out.print("\n" + "1. Agregar nodo.\n"
+                    + "2. Mostrar lista.\n"
+                    + "3. Salir.\n"
+                    +  "Selecciona una opción: ");
+            switch (Opcion = scaner.nextInt()) {
+                case 1: //Opción 1 para agregar un nodo.
+                    nodos.AgregarNodo(); //Llamamos los metodos a ejecular con nuestro objeto creado.
+                    break;
+                case 2: //Opción 2 para mostrar los casos de los nodos.
+                    nodos.MostrarLista();
+                    break;
+            }
+        } while (Opcion != 3);
+    }
+    static class Nodo {
+        //Datos y enlace usados
+        String name;
+        Nodo next;
+    }
+    public void AgregarNodo() { //Uso de if anidados.
+        if (top == null) { //Si el nodo esta vacio o nulo agrega el pricipal nodo de la lista.
+            top = new Nodo(); //Creamos el principal nodo y le asisgnamos a la variable top los atributos de la clase Nodo(), estos serian "name" y "next".
+            top.name =  "A"; //Se agregara el nodo "A" en nuesta lista llamada top y con el enlace "name" lo agregara de forma cadena "String".
+            top.next = null;  //El campo "next" al ser el primer nodo el valor sera null.
+            cont++;//Cuando el usiario seleccione la opción 1 hara un incremento cont++.
+            total++;//La varaible total se encargara de hacer incrementos las veces que el usuario seleccione la opción 1 y contara cuantos nodos se han creado.
+            System.out.println("Nodo agregado con exito");
+        } else if (cont == 1) { //Cuando el incremento vuelva a tener el valor 1 agregara el nodo "B".
+            Nodo temp; //Este nodo se creara cuando el usuario haya creado el nodo "A" y cuando quiera ingresar otro nodo se agregara el nodo "B".
+            temp = new Nodo(); //Creamos un nodo temporal y le asisgnamos a la campo temp los atributos de la clase Nodo(), estos serian "name" y "next".
+            temp.name = "B"; //Cuando el usuario haya creado el nodo "A" y seleccione denuevo la opc. 1 se agregara el nodo "B", ejemplo A B.
+            temp.next = top; //El nodo "B" se agregara al ultimo de toda la lista.
+            top = temp; //Se asigna la referencia del Nodo recien creado a top.
+            cont++; //El incremento tendra el valor de 2.
+            total++; //La variable total seguira su ingremento.
+            System.out.println("Nodo agregado con exito");
+        } else if (cont == 2) {//Cuando el incremento vuelva a tener el valor 2 agregara el nodo "BB".
+            Nodo temp; //Este nodo se creara cuando el usuario haya creado el nodo "B" y cuando quiera ingresar otro nodo se agregara el nodo "BB".
+            temp = new Nodo(); //Creamos un nodo temporal y le asisgnamos a la campo temp los atributos de la clase Nodo(), estos serian "name" y "next".
+            temp.name = "BB"; //Cuando el usuario haya creado el nodo "B" y seleccione denuevo la opc. 1 se agregara el nodo "BB", ejemplo A B BB.
+            temp.next = top; //El nodo "BB" se agregara al ultimo de toda la lista.
+            top = temp; //Se asigna la referencia del Nodo recien creado a top.
+            cont++; //El incremento tendra el valor de 3.
+            total++; //La variable total seguira su ingremento.
+            System.out.println("Nodo agregado con exito");
+        } else if (cont == 3) {//Cuando el incremento vuelva a tener el valor 1 agregara el nodo "BBB".
+            Nodo temp; //Este nodo se creara cuando el usuario haya creado el nodo "BB" y cuando quiera ingresar otro nodo se agregara el nodo "BBB".
+            temp = new Nodo();//Creamos un nodo temporal y le asisgnamos a la campo temp los atributos de la clase Nodo(), estos serian "name" y "next".
+            temp.name = "BBB";//Cuando el usuario haya creado el nodo "BB" y seleccione denuevo la opc. 1 se agregara el nodo "BBB", ejemplo A B BB BBB.
+            temp.next = top;//El nodo "BBB" se agregara al ultimo de toda la lista.
+            top = temp; //Se asigna la referencia del Nodo recien creado a top.
+            cont = ini; //Cuando el incremendo cont++ cuando tenga el valor de 3 entonces tomara la variable ini y empezará denuevo el incremento desde 0.
+            total++; //La variable total seguira su ingremento.
+            System.out.println("Nodo agregado con exito");
+        } else if (cont == 0) { //Cuando el incremento vuelva a tener el valor 0 agregara el nodo "A".
+            Nodo temp; //Este nodo se creara cuando el usuario haya creado el nodo "BBB" y cuando quiera ingresar otro nodo se agregara el nodo "A".
+            temp = new Nodo(); //Creamos un nodo temporal y le asisgnamos a la campo temp los atributos de la clase Nodo(), estos serian "name" y "next". 
+            temp.name = "A"; //Cuando el usuario haya creado el nodo "BBB" y seleccione denuevo la opc. 1 se agregara el nodo "A", ejemplo A B BB BBB A.
+            temp.next = top; //El nodo "A" se agregara al ultimo de toda la lista.
+            top = temp; //Se asigna la referencia del Nodo recien creado a top.
+            cont++; //El incremento tendra el valor de 1.
+            total++; //La variable total seguira su ingremento.
+            System.out.println("Nodo agregado con exito");
+        }
+    }
+
+    public static void mostrar(String name, Nodo sig) { //Nuestro metodo publico estatico "mostrar" tendra los parametros "name" de manera de cadena "String" y "sig" de manare de "Nodo"
+        System.out.println(name); // "name" permitira mostrar mensajes de salida de manera de cadena.
+        while (sig != null) { //Cuando el usuario haya creado el primer nodo entonces "sig" mostrara los todos los nodos que existen.
+            System.out.print(sig.name + " "); //Permitira mostrar los nodos creados de manera de cadena.
+            sig = sig.next;
+        }
+    }
+
+    public void MostrarLista() { //Nuestro metodo "MostrarLista" se encargara mostrar todos los casos creados.
+        if (top == null) { //Si la lista esta vacia entonces mostrara un mensaje de salida que la lista esta vacía.
+            System.out.print("La lista de nodos esta vacia");
+        } else {
+            temp=top; //Nuesta lista "temp" tomara los nodos de la lista llamada "top".
+            for (int i = total; i >= 1; i--) { //Mostrara todos los casos creador de manera ordenado.
+                mostrar("\n" + "caso " + i, temp); //Nuestro metodo "mostrar" se encargara de mostrar todos los casos y sus respectivos nodos.
+                System.out.println("");
+                temp = temp.next; //En nuestra lista "temp" se irán eleminando los nodos para que de esta manera no se resvuelva los nodos con los casos y de esta manera no perjudicara nuestra lista de nodos llamada "top".
+            }
+            System.out.print("Total de nodos: " + total); //Mostrara cuantos nodos hay por el momento.
+        }
+        System.out.println("");
+    }
+}
+
+    
+
